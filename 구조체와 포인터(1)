@@ -1,0 +1,31 @@
+#include<stdio.h>
+#define TOTAL_NUM 3
+
+//구조체 생성
+typedef struct{
+	char name[10];
+	int age;
+}Person;
+
+//call by reference : 주소(=포인터)를 주고 받겠다
+void inputData(Person *p);
+void outputData(Person *p);
+
+int main(){
+	Person p[TOTAL_NUM];
+	//입력함수 호출
+	for(int i =0; i<TOTAL_NUM; i++){
+		inputData(p+i);//배열의 이름= 주소 에 i더해주기 +0,+1, +2...
+	}
+	for(int i =0; i<TOTAL_NUM; i++){
+		outputData(p+i);//주소에 넣기
+	}
+	
+	return 0;
+}
+void inputData(Person *p){
+	scanf("%s %d", p->name, &p->age);//포인터로 불러와서 ->사용, 일반 값을 불러올때는 . 사용
+}
+void outputData(Person *p){
+	printf("%s, %d\n", p->name, p->age);
+}
